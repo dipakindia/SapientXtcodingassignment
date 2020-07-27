@@ -1,6 +1,9 @@
 # Xtcodingassignment
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.4.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.4. along with Server side rendering and Progressive Web Appliaction.
+
+## Demo
+https://xtassignement.000webhostapp.com
 
 ## Development server
 
@@ -13,6 +16,9 @@ Run `ng generate component component-name` to generate a new component. You can 
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+
+if you want to make build with SSR 
+Run command `npm run build:ssr`
 
 ## Running unit tests
 
