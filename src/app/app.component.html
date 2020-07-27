@@ -1,0 +1,37 @@
+<div class="container xtcodingassignment">
+  <div class="row">
+    <div class="col-sm-12" *ngIf = "!loading">
+      <table class="news-table" role="table">
+        <thead role="rowgroup">
+          <tr role="row">
+            <th role="columnheader">Comments</th>
+            <th role="columnheader">Vote Counts</th>
+            <th role="columnheader">UP Vote</th>
+            <th role="columnheader">NEWS Details</th>
+          </tr>
+        </thead>
+        <tbody role="rowgroup">
+          <tr role="row" *ngFor="let news of newsList">
+            <td role="row">{{ news.num_comments }}</td>
+            <td role="row">{{ news.points }}</td>
+            <td role="row"><img src="https://news.ycombinator.com/grayarrow.gif" (click) = "doVote(news.objectID, news.points)"></td>
+            <td role="row">{{ news.title }} () By <b class="user">{{ news.author }}</b> 5 hours Ago <a
+                (click) = "hideNews(news.objectID)">[hide]</a> </td>
+          </tr>
+        </tbody>
+        
+      </table>
+      <div class="pagination">
+        <ul>
+          <li><a (click)="prev()" [ngClass]="{'disabled': page == 0}">Prev</a></li>
+          <li>|</li>
+          <li><a (click)="next()">Next</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-sm-12" *ngIf = "loading">
+      <img src="../assets/loading.gif" title="Loading.." alt="Loading.." width="300px" />
+    </div>
+    <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions" *ngIf = "!loading && loaded" style="height: 300px; width: 100%; display: block;"></highcharts-chart>
+  </div>
+</div>
