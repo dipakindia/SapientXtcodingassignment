@@ -5,10 +5,12 @@ import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
+import { DateAgoPipe } from './common.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DateAgoPipe
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

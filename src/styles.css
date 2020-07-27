@@ -19,7 +19,7 @@ body {
 
 .disabled {
     pointer-events: none;
-    color: #666;
+    color: #ddd!important;
 }
 b.user {
     text-transform: capitalize;

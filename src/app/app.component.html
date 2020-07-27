@@ -13,23 +13,27 @@
         <tbody role="rowgroup">
           <tr role="row" *ngFor="let news of newsList">
             <td role="row">{{ news.num_comments }}</td>
-            <td role="row">{{ news.points }}</td>
-            <td role="row"><img src="https://news.ycombinator.com/grayarrow.gif" (click) = "doVote(news.objectID, news.points)"></td>
-            <td role="row">{{ news.title }} () By <b class="user">{{ news.author }}</b> 5 hours Ago <a
-                (click) = "hideNews(news.objectID)">[hide]</a> </td>
+            <td role="row"><span [ngClass] = "{'dark-orange': (1000 > news.points && news.points > 500), 'orange': news.points > 1000 }">{{ news.points }}</span></td>
+            <td role="row"><img class="vote" src="https://news.ycombinator.com/grayarrow.gif" (click) = "doVote(news.objectID, news.points)"></td>
+            <td role="row">
+              {{ news.title }}  
+              <a *ngIf = "news.url" href="{{ news.url }}" target="_blank">({{ news.url.split('/')[2] }}) </a> 
+              <label>By <b class="user">{{ news.author }} </b></label>
+              <span> {{ news.created_at | dateAgo }} </span>
+              <a (click) = "hideNews(news.objectID)">[ hide ]</a> </td>
           </tr>
         </tbody>
         
       </table>
       <div class="pagination">
         <ul>
-          <li><a (click)="prev()" [ngClass]="{'disabled': page == 0}">Prev</a></li>
+          <li><a (click)="prev()" [ngClass]="{'disabled': page == 0}">Previous</a></li>
           <li>|</li>
           <li><a (click)="next()">Next</a></li>
         </ul>
       </div>
     </div>
-    <div class="col-sm-12" *ngIf = "loading">
+    <div class="col-sm-12 loader" *ngIf = "loading">
       <img src="../assets/loading.gif" title="Loading.." alt="Loading.." width="300px" />
     </div>
     <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions" *ngIf = "!loading && loaded" style="height: 300px; width: 100%; display: block;"></highcharts-chart>
