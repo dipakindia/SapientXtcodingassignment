@@ -36,6 +36,6 @@
     <div class="col-sm-12 loader" *ngIf = "loading">
       <img src="../assets/loading.gif" title="Loading.." alt="Loading.." width="300px" />
     </div>
-    <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions" *ngIf = "!loading && loaded" style="height: 300px; width: 100%; display: block;"></highcharts-chart>
+    <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions" *ngIf = "!loading && loaded && !chartLoading" style="height: 300px; width: 100%; display: block;"></highcharts-chart>
   </div>
 </div>
