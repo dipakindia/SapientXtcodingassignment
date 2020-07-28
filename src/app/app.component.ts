@@ -104,7 +104,14 @@ export class AppComponent {
   hideNews(id) {
     console.log(id);
     this.news.hideNews(id);
-    this.newsList = this.newsList.filter(data => data.objectID != id);
+    this.chartLoading = true;
+    this.loaded = false;
+    this.newsList = this.newsList.filter((data) => data.objectID != id);
+    setTimeout(() => {
+      this.loaded = true;
+      this.chartLoading = false;
+    }, 100);
+    this.loadChart();
   }
   doVote(id, count) {
     this.news.UpVotes(id, count);
@@ -128,8 +135,9 @@ export class AppComponent {
   }
 
   loadChart() {
-    let ids = this.newsList.map((data) => data.objectID);
-    let points = this.newsList.map((data) => data.points);
+    let hideList = this.news.getHideNews();
+    let ids = this.newsList.filter((data) => !hideList.includes(data.objectID)).map((data) => data.objectID);
+    let points = this.newsList.filter((data) => !hideList.includes(data.objectID)).map((data) => data.points);
     this.chartOptions.xAxis.categories = ids;
     this.chartOptions.series = [
       {

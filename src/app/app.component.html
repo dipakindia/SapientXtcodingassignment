@@ -20,7 +20,7 @@
               <a *ngIf = "news.url" href="{{ news.url }}" target="_blank">({{ news.url.split('/')[2] }}) </a> 
               <label>By <b class="user">{{ news.author }} </b></label>
               <span> {{ news.created_at | dateAgo }} </span>
-              <a (click) = "hideNews(news.objectID)">[ hide ]</a> </td>
+              <a href="javascrit:void(0)" (click) = "hideNews(news.objectID)">[ hide ]</a> </td>
           </tr>
         </tbody>
         
